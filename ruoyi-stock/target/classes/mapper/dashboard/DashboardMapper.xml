@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.stock.dashboard.mapper.DashboardMapper">
+
+    <select id="countFunds" resultType="com.ruoyi.stock.dashboard.vo.CountResult">
+        select
+            sum(member_funds.enable_amt) totalEnableAmount,
+            sum(member_funds.occupancy_amt) totalOccupancyAmt,
+            sum(member_funds.freeze_amt) totalFreezeAmt,
+            sum(member_funds.profit_amt) totalProfitAmt
+        from member_funds
+        left join member on member.id = member_funds.member_id
+        <where>
+            member.account_type = '0' and  market_id = #{marketId}
+            <if test="userId != null">
+                and member.user_id = #{userId}
+            </if>
+            <if test="treeId != null">
+                and member.user_id in (select user_id from sys_user where tree like concat('%/',#{treeId},'%'))
+            </if>
+        </where>
+    </select>
+    <select id="countMember" resultType="com.ruoyi.stock.dashboard.vo.CountResult">
+        select
+            sum(if(account_type = '0' and TO_DAYS(create_time) = TO_DAYS(now()),1,0)) todayRegisterMemberNum,
+            sum(if(account_type = '0',1,0)) totalRegisterMemberNum,
+            sum(if(account_type = '1',1,0)) freezeMemberNum
+        from member
+        <where>
+            <if test="userId != null">
+                and member.user_id = #{userId}
+            </if>
+            <if test="treeId != null">
+                and member.user_id in (select user_id from sys_user where tree like concat('%/',#{treeId},'%'))
+            </if>
+        </where>
+    </select>
+    <select id="countMemberRecharge" resultType="java.lang.Long">
+        select
+            count(1)
+        from (
+            select
+                DISTINCT r.member_id
+            from member_recharge r
+            left join member m on m.id = r.member_id
+        <where>
+            r.status = '1'  and m.account_type = '0'  and  market_id = #{marketId}
+            <if test="userId != null">
+                and m.user_id = #{userId}
+            </if>
+            <if test="treeId != null">
+                and m.user_id in (select user_id from sys_user where tree like concat('%/',#{treeId},'%'))
+            </if>
+        </where>
+        ) a
+    </select>
+    <select id="countRecharge" resultType="com.ruoyi.stock.dashboard.vo.CountResult">
+        select
+            sum(if( TO_DAYS(member_recharge.approval_time) = TO_DAYS(now()),member_recharge.actual_amt,0)) todayRechargeAmount,
+            sum(actual_amt) totalRechargeAmount
+        from member_recharge
+        left join member on member.id = member_recharge.member_id
+        <where>
+            member.account_type = '0'  and member_recharge.status = '1'  and  market_id = #{marketId}
+            <if test="userId != null">
+                and member.user_id = #{userId}
+            </if>
+            <if test="treeId != null">
+                and member.user_id in (select user_id from sys_user where tree like concat('%/',#{treeId},'%'))
+            </if>
+        </where>
+    </select>
+    <select id="countWithdrawal" resultType="com.ruoyi.stock.dashboard.vo.CountResult">
+        select
+            sum(if(TO_DAYS(member_withdraw.approval_time) = TO_DAYS(now()),actual_amt,0)) todayWithdrawalAmount,
+            sum(actual_amt) totalWithdrawalAmount
+        from member_withdraw
+        left join member on member.id = member_withdraw.member_id
+        <where>
+            member.account_type = '0'  and member_withdraw.status = '1'   and  market_id = #{marketId}
+            <if test="userId != null">
+                and member.user_id = #{userId}
+            </if>
+            <if test="treeId != null">
+                and member.user_id in (select user_id from sys_user where tree like concat('%/',#{treeId},'%'))
+            </if>
+        </where>
+    </select>
+</mapper>

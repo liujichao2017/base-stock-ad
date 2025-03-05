@@ -1,0 +1,18 @@
+db:
+  addr: 206.238.179.229:3306
+  dbName: java_0225
+  user: java_0225
+  pass: daErrB8dpdePJPdX
+
+redis:
+  addr: 206.238.179.229
+  port: 6379
+  pass: tAaRcKCyKFY4874z
+
+
+app:
+  addr: http://127.0.0.1:8080
+
+#全局脱敏
+sensitive:
+  enabled: true

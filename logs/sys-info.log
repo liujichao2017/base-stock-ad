@@ -1,0 +1,44 @@
+10:47:34.347 [main] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 11.0.19 on MacBook-Pro.local with PID 67883 (/Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad/ruoyi-admin/target/classes started by king in /Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad)
+10:47:34.350 [main] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+10:47:34.353 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+10:47:35.947 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9999"]
+10:47:35.951 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+10:47:35.951 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.96]
+10:47:36.038 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+10:47:36.545 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - [dataSource,68] - Init DruidDataSource
+10:47:36.640 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+10:47:39.299 [Druid-ConnectionPool-Create-1751018088] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+10:49:21.378 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+10:49:21.377 [main] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 11.0.19 on MacBook-Pro.local with PID 69248 (/Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad/ruoyi-admin/target/classes started by king in /Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad)
+10:49:21.381 [main] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+10:49:22.953 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9999"]
+10:49:22.957 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+10:49:22.957 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.96]
+10:49:23.041 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+10:49:23.545 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - [dataSource,68] - Init DruidDataSource
+10:49:23.639 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+10:49:26.111 [Druid-ConnectionPool-Create-1642154835] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+10:52:17.102 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+10:52:17.102 [main] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 11.0.19 on MacBook-Pro.local with PID 71505 (/Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad/ruoyi-admin/target/classes started by king in /Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad)
+10:52:17.105 [main] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+10:52:18.620 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9999"]
+10:52:18.624 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+10:52:18.624 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.96]
+10:52:18.705 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+10:52:19.186 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - [dataSource,68] - Init DruidDataSource
+10:52:19.270 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+10:52:21.613 [Druid-ConnectionPool-Create-939871489] INFO  c.a.d.p.DruidAbstractDataSource - [setFailContinuous,1900] - {dataSource-1} failContinuous is true
+11:01:14.867 [main] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 11.0.19 on MacBook-Pro.local with PID 78881 (/Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad/ruoyi-admin/target/classes started by king in /Users/king/Documents/学习项目/面试题/后端面试/20250305面试/java_3/base-stock-ad)
+11:01:14.867 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+11:01:14.870 [main] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "dev"
+11:01:16.457 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9999"]
+11:01:16.462 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+11:01:16.462 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.96]
+11:01:16.549 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+11:01:17.067 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - [dataSource,68] - Init DruidDataSource
+11:01:17.163 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+11:01:25.080 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-9999"]
+11:01:25.107 [main] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 10.586 seconds (JVM running for 11.603)
+11:03:28.598 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+11:03:28.606 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+11:03:28.612 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
