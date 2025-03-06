@@ -68,6 +68,7 @@ public class MemberPositionController extends BaseController {
         return toAjax(memberPositionService.insertMemberPosition(memberPosition));
     }
 
+
     @PreAuthorize("@ss.hasPermi('stock:position:sell')")
     @Log(title = "强制平仓", businessType = BusinessType.UPDATE)
     @PostMapping("/sell")

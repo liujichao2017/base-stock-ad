@@ -64,4 +64,12 @@ public class MemberFunds implements Serializable {
     /** 更新时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+
+    /** 货币类型 */
+    @Excel(name = "货币类型")
+    private String currencyType;
+
+    /** 账号类型 */
+    @Excel(name = "账号类型")
+    private String accountType;
 }

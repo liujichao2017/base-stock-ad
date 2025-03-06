@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -41,7 +42,7 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         Long memberId = getMemberId(fundsOperateVo);
         Long marketId = getMarketId(fundsOperateVo);
 
-        MemberFunds memberFunds = getMemberFunds(memberId, marketId);
+        MemberFunds memberFunds = getMemberFunds(memberId, marketId, fundsOperateVo.getAccountType(),fundsOperateVo.getCurrencyType());
         int count = 0;
         BigDecimal amt = fundsOperateVo.getAmt();
         if (fundsOperateVo.isNegative()) {
@@ -94,7 +95,7 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         Long marketId = getMarketId(fundsOperateVo);
 
         BigDecimal amt = fundsOperateVo.getAmt();
-        MemberFunds memberFunds = getMemberFunds(memberId, marketId);
+        MemberFunds memberFunds = getMemberFunds(memberId, marketId, fundsOperateVo.getAccountType(), fundsOperateVo.getCurrencyType());
 
         // 增加体验金逻辑
         BigDecimal experienceAmt = useExperienceAmt(fundsOperateVo);
@@ -127,7 +128,7 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         Long marketId = getMarketId(fundsOperateVo);
 
         BigDecimal amt = fundsOperateVo.getAmt();
-        MemberFunds memberFunds = getMemberFunds(memberId, marketId);
+        MemberFunds memberFunds = getMemberFunds(memberId, marketId, fundsOperateVo.getAccountType(), fundsOperateVo.getCurrencyType());
 
         // 增加体验金逻辑
         BigDecimal experienceAmt = queryExperienceAmt(fundsOperateVo);
@@ -256,7 +257,7 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         Long marketId = getMarketId(fundsOperateVo);
 
         BigDecimal amt = fundsOperateVo.getAmt();
-        MemberFunds memberFunds = getMemberFunds(memberId, marketId);
+        MemberFunds memberFunds = getMemberFunds(memberId, marketId, fundsOperateVo.getAccountType(), fundsOperateVo.getCurrencyType());
         int count = 0;
         if (fundsOperateVo.isNegative()) {
             count = memberFundsMapper.addEnableAmtByNegative(amt, memberFunds.getId());
@@ -314,10 +315,27 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         return getMemberFunds(memberId, marketId);
     }
 
-    private MemberFunds getMemberFunds(Long memberId, Long marketId) {
+    @Override
+    public List<MemberFunds> getQuantificationFundsRecord(Long memberId) {
+        QueryWrapper<MemberFunds> ew = new QueryWrapper<>();
+        ew.eq("member_id", memberId);
+        ew.eq("account_type", "QUANTIFICATION");
+//        ew.eq("market_id", marketId);
+//        ew.last("limit 1");
+        return memberFundsMapper.selectList(ew);
+
+    }
+
+    private MemberFunds getMemberFunds(Long memberId, Long marketId, String accountType, String currencyType) {
         QueryWrapper<MemberFunds> ew = new QueryWrapper<>();
         ew.eq("member_id", memberId);
         ew.eq("market_id", marketId);
+        if (LogicUtils.isNotBlank(accountType)) {
+            ew.eq("account_type", accountType);
+        }
+        if (LogicUtils.isNotBlank(currencyType)) {
+            ew.eq("currency_type", currencyType);
+        }
         ew.last("limit 1");
         MemberFunds memberFunds = memberFundsMapper.selectOne(ew);
         if (LogicUtils.isNull(memberFunds)) {
@@ -328,6 +346,8 @@ public class MemberFundsServiceImpl implements MemberFundsService {
             memberFunds.setFreezeAmt(BigDecimal.ZERO);
             memberFunds.setOccupancyAmt(BigDecimal.ZERO);
             memberFunds.setProfitAmt(BigDecimal.ZERO);
+            memberFunds.setAccountType(accountType);
+            memberFunds.setCurrencyType(currencyType);
 
             LogicUtils.assertTrue(memberFundsMapper.insert(memberFunds) == 1, "数据异常");
         }
@@ -337,6 +357,11 @@ public class MemberFundsServiceImpl implements MemberFundsService {
                                          .add(experienceMap.getOrDefault(memberId, Collections.emptyMap())
                                                       .getOrDefault(marketId, BigDecimal.ZERO)));
         return memberFunds;
+    }
+
+    // Overloaded method for backward compatibility
+    private MemberFunds getMemberFunds(Long memberId, Long marketId) {
+        return getMemberFunds(memberId, marketId, null, null);
     }
 
     private void createMemberFundsLogs(FundsOperateVo fundsOperateVo, Consumer<MemberFundsLogs> consumer) {
@@ -358,6 +383,8 @@ public class MemberFundsServiceImpl implements MemberFundsService {
         memberFundsLogs.setSourceId(fundsOperateVo.getSourceId());
         memberFundsLogs.setOperateType(fundsOperateVo.getOperateType().getType());
 
+        memberFundsLogs.setAccountType(fundsOperateVo.getAccountType());
+        memberFundsLogs.setCurrencyType(fundsOperateVo.getCurrencyType());
         consumer.accept(memberFundsLogs);
 
         StringBuilder content = new StringBuilder();

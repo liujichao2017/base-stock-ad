@@ -10,6 +10,7 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.stock.member.domain.Member;
 import com.ruoyi.stock.member.domain.MemberBank;
 import com.ruoyi.stock.member.service.IMemberService;
+import com.ruoyi.stock.member.service.MemberFundsService;
 import com.ruoyi.stock.member.vo.SendSmsVo;
 import com.ruoyi.stock.member.vo.UpdateAmtVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ import java.util.List;
 public class MemberController extends BaseController {
     @Autowired
     private IMemberService memberService;
+    @Autowired
+    private MemberFundsService memberFundsService;
 
     /**
      * 查询会员列表
@@ -169,5 +172,13 @@ public class MemberController extends BaseController {
         }
         if (members.isEmpty()) return AjaxResult.error("该客户不存在");
         return AjaxResult.success(members.get(0));
+    }
+
+    /**
+     * 查询用户量化资金的信息,包含各个市场的
+     */
+    @GetMapping(value = "/{id}")
+    public AjaxResult getQuantificationInfo(@PathVariable("id") Long id) {
+        return success(memberFundsService.getQuantificationFundsRecord(id));
     }
 }

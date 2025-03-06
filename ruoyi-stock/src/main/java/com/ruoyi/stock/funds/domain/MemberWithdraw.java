@@ -80,6 +80,14 @@ public class MemberWithdraw implements Serializable {
     @Excel(name = "拒绝原因")
     private String orderDesc;
 
+    @Excel(name = "账号类型")
+    private String accountType;
+
+
+    //新增字段货币类型
+    @Excel(name = "货币类型")
+    private String currencyType;
+
     /**
      * 审批时间
      */
@@ -154,8 +162,8 @@ public class MemberWithdraw implements Serializable {
     @TableField(exist = false)
     private String userName;
 
-    @TableField(exist = false)
-    private String accountType;
+//    @TableField(exist = false)
+//    private String accountType;
 
     @TableField(exist = false)
     private String memberRealName;

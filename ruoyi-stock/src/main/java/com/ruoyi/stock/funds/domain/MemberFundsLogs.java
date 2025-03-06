@@ -110,4 +110,8 @@ public class MemberFundsLogs implements Serializable {
     @TableField(exist = false)
     @Sensitive
     private String memberPhone;
+
+    /** 货币类型 */
+    @Excel(name = "货币类型")
+    private String currencyType;
 }

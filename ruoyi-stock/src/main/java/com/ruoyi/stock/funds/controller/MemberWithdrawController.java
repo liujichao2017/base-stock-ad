@@ -2,6 +2,8 @@ package com.ruoyi.stock.funds.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.stock.funds.domain.MemberRecharge;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,6 +68,17 @@ public class MemberWithdrawController extends BaseController
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
         return success(memberWithdrawService.selectMemberWithdrawById(id));
+    }
+
+    /**
+     * 审核客户提现
+     */
+    @PreAuthorize("@ss.hasPermi('funds:recharge:check')")
+    @Log(title = "审核客户提现", businessType = BusinessType.UPDATE)
+    @PostMapping
+    public AjaxResult check(@RequestBody MemberWithdraw memberWithdraw)
+    {
+        return toAjax(memberWithdrawService.checkMemberWithdraw(memberWithdraw));
     }
 
     /**

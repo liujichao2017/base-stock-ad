@@ -1,6 +1,8 @@
 package com.ruoyi.stock.funds.service;
 
 import java.util.List;
+
+import com.ruoyi.stock.funds.domain.MemberRecharge;
 import com.ruoyi.stock.funds.domain.MemberWithdraw;
 import com.ruoyi.common.core.page.TableDataInfo;
 
@@ -27,6 +29,14 @@ public interface IMemberWithdrawService
      * @return 用户提现集合
      */
     public List<MemberWithdraw> selectMemberWithdrawList(MemberWithdraw memberWithdraw);
+
+    /**
+     * 审核客户提现
+     *
+     * @param memberWithdraw 审核客户提现
+     * @return 结果
+     */
+    public int checkMemberWithdraw(MemberWithdraw memberWithdraw);
 
     /**
      * 新增用户提现

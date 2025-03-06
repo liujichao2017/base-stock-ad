@@ -105,6 +105,14 @@ public class MemberRecharge implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
+    @Excel(name = "账号类型")
+    private String accountType;
+
+
+    //新增字段货币类型
+    @Excel(name = "货币类型")
+    private String currencyType;
+
 
     @TableField(exist = false)
     private String userId;
@@ -112,8 +120,8 @@ public class MemberRecharge implements Serializable {
     @TableField(exist = false)
     private String userName;
 
-    @TableField(exist = false)
-    private String accountType;
+//    @TableField(exist = false)
+//    private String accountType;
 
     @TableField(exist = false)
     private String memberRealName;

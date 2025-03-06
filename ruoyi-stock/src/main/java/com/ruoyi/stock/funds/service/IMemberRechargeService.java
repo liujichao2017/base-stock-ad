@@ -29,6 +29,14 @@ public interface IMemberRechargeService
     public List<MemberRecharge> selectMemberRechargeList(MemberRecharge memberRecharge);
 
     /**
+     * 审核客户充值
+     *
+     * @param memberRecharge 审核客户充值
+     * @return 结果
+     */
+    public int checkMemberRecharge(MemberRecharge memberRecharge);
+
+    /**
      * 新增客户充值
      *
      * @param memberRecharge 客户充值

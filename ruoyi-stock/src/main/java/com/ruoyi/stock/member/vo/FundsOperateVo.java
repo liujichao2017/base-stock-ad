@@ -59,6 +59,10 @@ public class FundsOperateVo {
 
     private String contentJson;
 
+    private String currencyType;
+
+    private String accountType;
+
     private final Map<String, Object> fundsInfoMap = new LinkedHashMap<>();
 
     public FundsOperateVo set(String key, Object value) {

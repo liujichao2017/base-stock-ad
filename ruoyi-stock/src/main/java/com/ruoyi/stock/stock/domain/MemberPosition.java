@@ -180,6 +180,18 @@ public class MemberPosition implements Serializable {
 
 
     /**
+     * 持仓类型  1普通持仓  2-量化交易
+     */
+    @Excel(name = "持仓类型  1普通持仓  2-量化交易")
+    private String positionType;
+
+    /**
+     * 货币类型
+     */
+    @Excel(name = "货币类型")
+    private String currencyType;
+
+    /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -74,6 +74,32 @@ public class MemberWithdrawServiceImpl implements IMemberWithdrawService {
         return res;
     }
 
+    @Override
+    @Transactional
+    public int checkMemberWithdraw(MemberWithdraw memberWithdraw) {
+        memberWithdraw.setUpdateTime(DateUtils.getNowDate());
+        memberWithdraw.setApprovalTime(new Date());
+        if ("2".equals(memberWithdraw.getStatus())) {
+            FundsOperateVo fundsOperateVo = new FundsOperateVo();
+            fundsOperateVo.setSource(FundsSourceEnum.RECHARGE);
+            fundsOperateVo.setOperateType(FundsOperateTypeEnum.OTHER);
+            fundsOperateVo.setMemberId(memberWithdraw.getMemberId());
+            fundsOperateVo.setMarketId(memberWithdraw.getMarketId());
+            fundsOperateVo.setAmt(memberWithdraw.getAmt());
+            fundsOperateVo.setNegative(false);
+            fundsOperateVo.setCurrencyType(memberWithdraw.getCurrencyType());
+            fundsOperateVo.setAccountType(memberWithdraw.getAccountType());
+            memberFundsService.addEnableAmt(fundsOperateVo);
+        }
+//        if (!"0".equals(memberWithdraw.getStatus())) {
+//            memberWithdraw.setApprovalTime(new Date());
+//        }
+        if ("1".equals(memberWithdraw.getStatus())) {
+            setBeak(memberWithdraw);
+        }
+        return memberWithdrawMapper.updateById(memberWithdraw);
+    }
+
     /**
      * 新增用户提现
      *

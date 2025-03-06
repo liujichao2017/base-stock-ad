@@ -152,6 +152,10 @@ public class MemberPositionServiceImpl implements IMemberPositionService {
         fundsOperateVo.set(FundsOperateVo.FundsInfoKey.STOCK_CODE, stock.getCode());
         fundsOperateVo.set(FundsOperateVo.FundsInfoKey.OCCUPANCY_AMT, principalAmt);
         fundsOperateVo.set(FundsOperateVo.FundsInfoKey.FEE_AMT, memberPosition.getAllProfitAndLose());
+
+        fundsOperateVo.setAccountType(memberPosition.getPositionType());
+        fundsOperateVo.setCurrencyType(memberPosition.getCurrencyType());
+
         fundsOperateVo.build();
 
         memberFundsService.addOccupancyAmt(fundsOperateVo);
@@ -258,6 +262,9 @@ public class MemberPositionServiceImpl implements IMemberPositionService {
         fundsOperateVo.setName(memberPosition.getStockName());
         fundsOperateVo.setCode(memberPosition.getStockCode());
 
+        fundsOperateVo.setCurrencyType(memberPosition.getCurrencyType());
+        fundsOperateVo.setAccountType(memberPosition.getAccountType());
+
         fundsOperateVo.set(FundsOperateVo.FundsInfoKey.STOCK_NAME, memberPosition.getStockName())
                 .set(FundsOperateVo.FundsInfoKey.STOCK_CODE, memberPosition.getStockCode())
                 .set(FundsOperateVo.FundsInfoKey.OCCUPANCY_AMT, memberPosition.getPrincipalAmt())
@@ -278,6 +285,9 @@ public class MemberPositionServiceImpl implements IMemberPositionService {
         fundsOperateVo.setName(memberPosition.getStockName());
         fundsOperateVo.setCode(memberPosition.getStockCode());
         fundsOperateVo.setVisible(YNEnum.NO.getType());
+        fundsOperateVo.setCurrencyType(memberPosition.getCurrencyType());
+        fundsOperateVo.setAccountType(memberPosition.getAccountType());
+
         memberFundsService.addProfitAmt(fundsOperateVo);
 
         QueryWrapper<MemberPosition> ew = new QueryWrapper<>();
@@ -304,6 +314,9 @@ public class MemberPositionServiceImpl implements IMemberPositionService {
         memberPosition.setTotalAmt(totalAmt);
         memberPosition.setPrincipalAmt(principalAmt);
         memberPosition.setSellTimeLimit(body.getSellTimeLimit());
+
+        memberPosition.setAccountType(body.getAccountType());
+        memberPosition.setCurrencyType(body.getCurrencyType());
 
         BigDecimal totalFee = BigDecimal.ZERO;
         BigDecimal buyFee = market.getBuyFee();

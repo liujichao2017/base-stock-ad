@@ -72,6 +72,36 @@ public class MemberRechargeServiceImpl implements IMemberRechargeService {
         return memberRechargeMapper.selectByList(ew);
     }
 
+    @Override
+    @Transactional
+    public int checkMemberRecharge(MemberRecharge memberRecharge) {
+        memberRecharge.setUpdateTime(DateUtils.getNowDate());
+        memberRecharge.setApprovalTime(new Date());
+        if ("1".equals(memberRecharge.getStatus())) {
+
+            FundsOperateVo fundsOperateVo = new FundsOperateVo();
+            fundsOperateVo.setSource(FundsSourceEnum.RECHARGE);
+            fundsOperateVo.setOperateType(FundsOperateTypeEnum.OTHER);
+            fundsOperateVo.setMemberId(memberRecharge.getMemberId());
+            fundsOperateVo.setMarketId(memberRecharge.getMarketId());
+            fundsOperateVo.setAmt(memberRecharge.getAmt());
+            fundsOperateVo.setNegative(false);
+            fundsOperateVo.setSourceId(memberRecharge.getId());
+            fundsOperateVo.setCurrencyType(memberRecharge.getCurrencyType());
+            fundsOperateVo.setAccountType(memberRecharge.getAccountType());
+            memberFundsService.addEnableAmt(fundsOperateVo);
+
+            experienceService.recharge(memberRecharge.getMemberId(), memberRecharge.getMarketId(),
+                    memberRecharge.getAmt());
+        }
+//        if (!"0".equals(memberRecharge.getStatus())) {
+//
+//
+//        }
+
+        return memberRechargeMapper.updateById(memberRecharge);
+    }
+
     /**
      * 新增客户充值
      *

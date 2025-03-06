@@ -69,6 +69,17 @@ public class MemberRechargeController extends BaseController
     }
 
     /**
+     * 审核客户充值
+     */
+    @PreAuthorize("@ss.hasPermi('funds:recharge:check')")
+    @Log(title = "审核客户充值", businessType = BusinessType.UPDATE)
+    @PostMapping
+    public AjaxResult check(@RequestBody MemberRecharge memberRecharge)
+    {
+        return toAjax(memberRechargeService.checkMemberRecharge(memberRecharge));
+    }
+
+    /**
      * 新增客户充值
      */
     @PreAuthorize("@ss.hasPermi('funds:recharge:add')")

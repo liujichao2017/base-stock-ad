@@ -5,6 +5,8 @@ import com.ruoyi.stock.member.domain.Member;
 import com.ruoyi.stock.member.domain.MemberFunds;
 import com.ruoyi.stock.member.vo.FundsOperateVo;
 
+import java.util.List;
+
 public interface MemberFundsService {
 
     /**
@@ -67,4 +69,6 @@ public interface MemberFundsService {
 
     MemberFunds getFundsRecord(Market market, Member member);
     MemberFunds getFundsRecord(Long marketId, Long memberId);
+
+    List<MemberFunds> getQuantificationFundsRecord(Long memberId);
 }
